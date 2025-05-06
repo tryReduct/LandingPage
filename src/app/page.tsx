@@ -10,7 +10,8 @@ export default function Home() {
     // Force the gradient background to be applied regardless of color scheme
     <div className="min-h-screen animated-gradient text-black">
       <Navbar />
-      <main>
+      <main className="relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-600/20 via-purple-600/10 to-purple-600/5 pointer-events-none" />
         <HeroSection />
         <FeaturesSection />
         <HowItWorks />

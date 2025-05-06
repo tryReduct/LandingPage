@@ -24,26 +24,26 @@ export default function FeaturesSection() {
   ]
 
   return (
-    <section id="features" className="py-20 bg-white/5 backdrop-blur-md">
+    <section id="features" className="py-20">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Powerful Features</h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 tracking-tight">Powerful Features</h2>
+          <p className="text-lg text-black/80 max-w-2xl mx-auto leading-relaxed">
             Reduct combines AI intelligence with intuitive controls to revolutionize video editing.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="glass-card border-0 overflow-hidden">
+            <Card key={index} className="glass-card hover:cursor-pointer border-0 overflow-hidden">
               <CardHeader className="pb-2">
-                <div className="mb-4 bg-white rounded-full w-16 h-16 flex items-center justify-center">
+                <div className="mb-4 bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center">
                   {feature.icon}
                 </div>
-                <CardTitle className="text-xl font-bold text-white tracking-tight">{feature.title}</CardTitle>
+                <CardTitle className="text-xl font-bold text-black tracking-tight">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-white/80 text-base leading-relaxed">
+                <CardDescription className="text-black/80 text-base leading-relaxed">
                   {feature.description}
                 </CardDescription>
               </CardContent>
