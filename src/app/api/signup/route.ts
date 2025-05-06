@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { MongoClient } from 'mongodb'
+
+// MongoDB connection string - you'll need to replace this with your actual MongoDB connection string
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017'
+const client = new MongoClient(uri)
 
 export async function POST(request: Request) {
   try {
@@ -13,23 +16,20 @@ export async function POST(request: Request) {
       )
     }
 
-    // Create data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), 'data')
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir)
-    }
+    // Connect to MongoDB
+    await client.connect()
+    const db = client.db('early-access')
+    const collection = db.collection('users')
 
-    const csvPath = path.join(dataDir, 'signups.csv')
-    const timestamp = new Date().toISOString()
-    const csvRow = `${timestamp},${name},${email}\n`
+    // Insert the new signup
+    await collection.insertOne({
+      name,
+      email,
+      timestamp: new Date()
+    })
 
-    // Check if file exists, if not create it with headers
-    if (!fs.existsSync(csvPath)) {
-      fs.writeFileSync(csvPath, 'timestamp,name,email\n')
-    }
-
-    // Append the new signup
-    fs.appendFileSync(csvPath, csvRow)
+    // Close the connection
+    await client.close()
 
     return NextResponse.json(
       { message: 'Signup successful' },

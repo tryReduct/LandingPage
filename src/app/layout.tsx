@@ -1,12 +1,11 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Goldman} from "next/font/google"
 
 // Load Inter font using Next.js font optimization
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
   weight: ["300", "400", "500", "600", "700"],
 })
 
